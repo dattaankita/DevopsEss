@@ -1,0 +1,4 @@
+https://www.youtube.com/watch?v=s1o9BKW2rdw
+java -version
+mvn -version
+git --version   

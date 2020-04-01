@@ -1,0 +1,62 @@
+java -version 
+ wget "https://mirrors.estointernet.in/apache/tomcat/tomcat-9/v9.0.33/bin/apache-tomcat-9.0.33.zip" 
+ls
+unzip apache-tomcat-9.0.33.zip       
+cd apache-tomcat-9.0.33   
+ls
+ls -ltr
+cd bin/
+ls
+cd ..
+chmod -R 776 apache-tomcat-9.0.33
+chmod -R 755 apache-tomcat-9.0.33
+cd apache-tomcat-9.0.33 
+pwd
+./bin/catalina.sh start
+curl "localhost:8080" 
+./bin/catalina.sh stop
+ls
+cd logs/
+cat catalina.2020-03-29.log 
+cd ..
+cd conf/
+cat server.xml 
+cat server.xml | grep 8080    
+./bin/catalina.sh start
+curl "localhost:8090"
+ps -ef
+ps -ef |grep servicename(java)
+netstat -tulpn
+ps -ef |grep tom
+
+cd conf/
+nano tomcat-users.xml 
+cd bin/
+cd ../conf/
+ls
+nano context.xml
+cat context.xml  
+nano context.xml 
+./bin/catalina.sh start
+curl "localhost:8090"
+cd ../webapps/manager/META-INF/  
+ls
+ nano context.xml   
+cd ..
+cd ..
+cd host-manager/ 
+cd META-INF/  
+ls
+nano context.xml
+cd ..
+cd ..
+ wget "https://plug-mirror.rcac.purdue.edu/osdn//pal/17479/helloworld.war"    
+ls
+cd ..
+./bin/catalina.sh stop   
+./bin/catalina.sh start
+cd webapps/
+ls
+cd ..
+whereis java
+whereis git

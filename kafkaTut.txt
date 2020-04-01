@@ -1,0 +1,39 @@
+docker run -it ubuntu:14.04
+ls
+sudo apt-get update
+sudo apt-get install zookeeperd   
+serv
+ls
+cat /etc/os-release
+cd /etc/os-release
+ls
+cd
+ls
+cd /
+wget "http://apachemirror.wuchna.com/kafka/2.4.1/kafka_2.12-2.4.1.tgz"             
+apt-get install wget 
+wget "http://apachemirror.wuchna.com/kafka/2.4.1/kafka_2.12-2.4.1.tgz"              
+ls
+java
+tar -xvzf kafka_2.12-2.4.1.tgz 
+ls
+ mv kafka_2.12-2.4.1 kafka
+ls
+cd kafka
+ls
+cd bin/
+ls
+
+
+
+anay.latiwal@gmail.com
+khotu@S3974
+
+
+
+docker swarm init --advertise-addr=172.17.243.33 
+>docker swarm join --token SWMTKN-1-0jy4z66yo6f5ghf63sbiyqupdr8tpwdxfbjldko9qdhccaguve-6qc6fqgyrz4t6dlbcfeq1lp95 192.168.65.3:2377               
+docker node ls 
+docker create service --name web -p 8080:80 -d httpd
+docker service ls
+docker ps
