@@ -1,0 +1,156 @@
+ssh ankita@40.121.153.21
+sudo su -  
+docker
+docker version 
+docker images 
+
+docker pull hello-world 
+docker run hello-world 
+docker rm 3a1f3b66bfcb 
+docker ps -a
+docker rmi hello-world
+docker images 
+docker run hello-world 
+docker ps -a  
+docker tag hello-world ankita101/hello-world27 
+docker login  
+docker push ankita101/hello-world27 
+docker rmi ankita101/hello-world27  
+docker images
+docker pull ankita101/hello-world27          
+docker images
+docker run -i -t ubuntu:10.04 /bin/bash  
+mkdir docker_practice 
+cd docker_practice 
+touch a.txt  
+docker ps  
+docker diff 5fe07f24ff63
+docker run -itd ubuntu:14.04 /bin/bash        
+docker ps
+docker ps -a    
+docker run -itd --name mycontainer ubuntu:14.04 /bin/bash
+docker ps
+docker stop mycontainer 
+docker restart mycontainer 
+docker pause mycontainer 
+docker unpause mycontainer 
+docker run --name deadcont hello-world  
+docker run --rm --name deadcont1 hello-world  
+docker ps -a| grep Exited| awk '{print $1}'              
+docker ps -a| grep Exited| awk '{print $1}' | xargs docker rm  
+docker ps -a| grep 14.04| awk '{print $1}' | xargs docker stop     
+docker ps -a| grep Exited| awk '{print $1}' | xargs docker rm 
+docker ps
+docker images
+docker images| grep latest |awk '{print $1}'| xargs docker rmi
+docker images| grep 10.04 |awk '{print $3}'|xargs docker rmi -f     
+
+
+docker run -d --name=web1 nginx 
+docker run -d --name=web2 nginx 
+docker run -d --name=web3 nginx 
+docker run -d --name=web4 nginx 
+docker inspect web1      
+        "Gateway": "172.17.0.1", "IPAddress": "172.17.0.2", 
+ifconfig
+docker0,eth0
+apt install bridge-utils  
+brctl show
+bridge name     bridge id               STP enabled     interfaces                                                                                           docker0         8000.024282268904       no              veth53a9947                                                                                                                                                  vethaf01a3b                                                                                                                                                                 vethc718ab2                                                                                                                                   vethf98af1b              
+docker stop web1
+bridge name     bridge id               STP enabled     interfaces
+docker0         8000.024282268904       no              vethaf01a3b
+                                                        vethc718ab2
+                                                        vethf98af1b
+docker network ls                                                                                                                                             NETWORK ID          NAME                DRIVER              SCOPE                                                                                            d48e282647de        bridge              bridge              local                                                                                            b542839fbdc9        host                host                local                                                                                            4ec148675c01        none                null                local                                                                                           docker network create mynetwork                                                                                           
+ docker run -d --name=web5 --network=mynetwork nginx           
+docker ps
+docker inspect web5
+
+
+docker run -itd tomcat:8.0
+docker ps
+docker inspect 7526a2caa66e 
+ "Gateway": "172.17.0.1",                                                                                                                                     "IPAddress": "172.17.0.2", 
+curl http://172.17.0.2:8080
+docker run -itd -p 8090:8080 tomcat:8.0
+curl http://40.121.153.21:8090
+
+Volume
+docker run -it -v /data --name=cvol alpine sh
+docker ps 
+docker attach cvol 
+/data # mkdir newVol1  
+/data # cd newVol1
+/data/newVol1 # touch a.txt     
+/data/newVol1 # ls                              
+a.txt  b.txt 
+
+
+
+
+cd /var/lib/docker                                                                                                                                           ls                                                                                                                                          
+cd volumes                                                                                                                                  
+ls                                                                                                                                  
+cd f3fef2f02b7b2c95b3b17b8284048e9ab1fe44c6b2cd7329470494ed4f65a3d6                                                                 
+ls                                                                     
+cd _data/                                                         
+ls                                                                 
+cd newVol1                                                       
+ls                                                                                                                                                           touch b.txt                                              
+ls                                                       
+a.txt  b.txt      
+
+
+ 
+
+docker volume create --name=myvol            
+docker run -it -v myvol:/data --name=cvol1 alpine sh                                                           
+/ # cd data/                         
+/data # mkdir edureka                                                                                                   
+/data # cd edureka                                                                                                      
+/data/edureka # touch a.txt                                                                                             
+/data/edureka # s                                                                                                       
+sh: s: not found                                                                                                        
+/data/edureka # ls                                                                                                      
+a.txt                                                                                                                   
+/data/edureka #  ls
+
+
+
+root@Test1:~# cd /var/lib/docker                                                                                                                             root@Test1:/var/lib/docker# ls                                                                                                                               
+builder  buildkit  containers  image  network  overlay2  plugins  runtimes  swarm  tmp  trust  volumes                                                       root@Test1:/var/lib/docker# cd volumes/                                                                                                                      root@Test1:/var/lib/docker/volumes# ls                                                                                                                       f3fef2f02b7b2c95b3b17b8284048e9ab1fe44c6b2cd7329470494ed4f65a3d6  honeysinghvol1  metadata.db  myvol                                                         root@Test1:/var/lib/docker/volumes# cd myvol                                                                                                                 root@Test1:/var/lib/docker/volumes/myvol# ls                                                                                                                  _data                                                                                                                                                       root@Test1:/var/lib/docker/volumes/myvol# cd _data                                                                                                           root@Test1:/var/lib/docker/volumes/myvol/_data# ls                                                                                                           edureka                                                                                                                                                      root@Test1:/var/lib/docker/volumes/myvol/_data# cd edureka                                                                                                   root@Test1:/var/lib/docker/volumes/myvol/_data/edureka# touch c.txt                                                                                          root@Test1:/var/lib/docker/volumes/myvol/_data/edureka# ls                                                                                                   a.txt  c.txt                                                                                                                                                root@Test1:/var/lib/docker/volumes/myvol/_data/edureka#                                                                                                                                                                                                                                                                                                   
+
+
+docker volume list     
+DRIVER              VOLUME NAME                                                                                         local               f3fef2f02b7b2c95b3b17b8284048e9ab1fe44c6b2cd7329470494ed4f65a3d6                                    local               
+honeysinghvol1                                                                                      local               
+myvol                                                                                               
+root@Test1:~# pwd                                                                                                       
+/root                                                                                                                   
+root@Test1:~# mkdir container_volumes                                                                                   
+root@Test1:~# chmod 777 container_volumes/                                                                              
+root@Test1:~# cd container_volumes/                                                                                     
+root@Test1:~/container_volumes# mkdir shared_dir                                                                        
+root@Test1:~/container_volumes# chmod 777 shared_dir/                                                                   
+root@Test1:~/container_volumes# cd shared_dir/                                                                          root@Test1:~/container_volumes/shared_dir# pwd                                                                          
+/root/container_volumes/shared_dir                                                                                      root@Test1:~/container_volumes/shared_dir# docker run -it -v /root/container_volumes/shared_dir:/data --name=cvol2 alpine sh                        
+mkdir
+
+
+
+
+
+docker ps                                                                                                                                                   CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES                            82ebca91058c        alpine              "sh"                7 minutes ago       Up 7 minutes                            cvol2                                ed89c90dd7ba        alpine              "sh"                24 minutes ago      Up 24 minutes                           cvol1                                               
+root@Test1:~# docker attach cvol2                                                                                                                         /practiceFol # ls                                                                                                                                            z.txt                                                                                                                                                                       
+/practiceFol # cd ..                                                                                                                                         / # ls                                                                                                                                                       bin          dev          home         media        opt          proc         run          srv          tmp          var                                    data         etc          lib          mnt          practiceFol  root         sbin         sys          usr                                                  / # cd data                                                                                                                                               /data # ls                                                                                                                                                  /data # mkdir pracFol1                                                                                                                                      /data # mkdir practiceFol                                                                                                                                   /data # cd practiceFol                                                                                                                                   /data/practiceFol # touch x.txt                                                                                                                              /data/practiceFol # ls                                                                                                                                       x.txt                                                                                                                                        /data/practiceFol # cd ..                                                                                                                                 /data # cd ..                                                                                                                                               / # cd practiceFol                                                                                                                                           /practiceFol # ls                                                                                                                                            z.txt                                                                                                                                                        /practiceFol #                                                                                                        
+
+
+
+
+
+
+
+
+
+docker run -p 9090:8080 -v /root/container_volumes/shared_dir/practiceFol:/var/jenkins_home jenkins      
